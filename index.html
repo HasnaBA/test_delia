@@ -1,0 +1,126 @@
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Test Delia</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="panel1"></div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
+
+
+    <script src="app.js" charset="utf-8"></script>
+    <script>
+        $(document).ready(function () {
+            $('.panel1').each(function () {
+                $(this).css({
+                    left: Math.random() * ($('.panel1').width() - 200),
+                    top: Math.random() * ($('.panel1').height() - 700)
+                });
+            });
+
+            // On click, hidding of the first square and adding 4 others squares
+
+            $("body").delegate(".panel1", "click", function () {
+                $(this).hide();
+                var div2 = "<div id='2' class='panel2'><div>";
+
+                for ($i = 1; $i < 5; $i++) {
+                    $(".container").append(div2);
+                };
+
+                // Random color and random move on the appearing squares
+
+                $('.panel2').each(function () {
+                    $colors = '#' + ('000000' + Math.floor(Math.random() * 16777215).toString(16)).slice(-6);
+                    $(this).css('background-color', $colors);
+                    $(this).css({
+                        left: Math.random() * ($('.panel2').width() + 650),
+                        top: Math.random() * ($('.panel2').height() + 450)
+                    });
+                });
+
+                // On click, hidding the previous squares and creation of 4 other squares
+
+                $('.panel2').on("click", function (event) {
+                    $(this).hide();
+                    for ($i = 1; $i < 5; $i++) {
+                        $(".container").append("<div id='3' class='panel3'><div>");
+                    };
+
+                    // Random color and move on the squares
+
+                    $(".panel3").each(function () {
+                        $colors = '#' + ('000000' + Math.floor(Math.random() * 16777215).toString(16)).slice(-6);
+                        $(this).css('background-color', $colors);
+                        $(this).css({
+                            left: Math.random() * ($('.panel3').width() + 650),
+                            top: Math.random() * ($('.panel3').height() + 450)
+                        });
+                    });
+
+                });
+
+                function randomMove() {
+                    $(".panel2, .panel3").each(function () {
+                        $(this).css({
+                            left: Math.random() * ($('.panel2, .panel3').width() + 650),
+                            top: Math.random() * ($('.panel2, .panel3').height() + 450)
+                        });
+                    });
+                };
+
+                var interval;
+                function startRandomMove() {
+                    interval = setInterval(randomMove, 2000);
+                };
+
+                function stopRandomMove() {
+                    clearInterval(interval);
+                };
+
+                // creation of the Crazy Mode with double click
+
+                var x = true;
+                $("body").on("dblclick", ".container", function () {
+                    if (x == true) {
+                        startRandomMove();
+                        x = false;
+                    } else if (x == false) {
+                        stopRandomMove();
+                        x = true;
+                    };
+                });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>

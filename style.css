@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+}
+
+.panel1{
+  background-color: rgb(218, 120, 120);
+  height: 800px;
+  width: 800px;
+  position: absolute;
+  margin: 20px;
+  margin-bottom: 20px;
+}
+.panel2 {
+  background-color: #000;
+  height: 200px;
+  width: 200px;
+  margin-top: 20px;
+  position: fixed; 
+}
+
+.panel3 {
+  background-color: #000;
+  height: 50px;
+  width: 50px;
+  margin-top: 20px;
+  position: fixed; 
+}
+
+ 
